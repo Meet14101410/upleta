@@ -1,0 +1,50 @@
+class UpletaInfoSystem:
+    """A basic information system for Upleta city."""
+    
+    def __init__(self):
+        self.city_facts = {
+            "Location": "Rajkot district, Gujarat, India",
+            "Population": "Approx. 60,000 (2023)",
+            "Known For": "Cotton and groundnut agriculture, local markets, and proximity to the Moj Dam."
+        }
+        self.points_of_interest = [
+            {"name": "Moj Dam", "type": "Reservoir/Dam", "description": "A major water reservoir and local picnic spot located near the city."},
+            {"name": "Moksh Marg", "type": "Temple Area", "description": "A local religious area with several small temples."},
+            {"name": "Market Yard", "type": "Economic Center", "description": "The primary market for local agricultural produce, mainly groundnut and cotton."}
+        ]
+
+    def get_city_fact(self, fact_name):
+        """Retrieves and prints a specific city fact."""
+        if fact_name in self.city_facts:
+            print(f"{fact_name}: {self.city_facts[fact_name]}")
+        else:
+            print(f"Fact not found: {fact_name}")
+
+    def search_landmarks(self, search_term):
+        """Searches for landmarks by name or type (case-insensitive)."""
+        print(f"\n--- Search Results for '{search_term}' ---")
+        lower_search_term = search_term.lower()
+        found = False
+        
+        for landmark in self.points_of_interest:
+            # Check if search term is in name or type (case-insensitive)
+            if lower_search_term in landmark["name"].lower() or lower_search_term in landmark["type"].lower():
+                print(f"Name: {landmark['name']}")
+                print(f"Type: {landmark['type']}")
+                print(f"Description: {landmark['description']}")
+                print("-" * 40)
+                found = True
+        
+        if not found:
+            print("No matching landmarks found.")
+
+# Main script logic
+info_system = UpletaInfoSystem()
+
+# Display general facts
+info_system.get_city_fact("Population")
+info_system.get_city_fact("Known For")
+
+# Search for landmarks
+info_system.search_landmarks("Dam")
+info_system.search_landmarks("Temple")
